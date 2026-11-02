@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Stopwatch · FocusMate</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="stopwatch">
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar"><div><h1>Study Stopwatch</h1><p>The database keeps the session, so refreshing never loses your time.</p></div></div>
+      <div class="error-box" id="errorBox"></div>
+      <div class="grid two">
+        <section class="card stopwatch-card" id="watchCard">
+          <span class="status-pill"><span class="dot"></span><span id="statusText">Idle</span></span>
+          <div class="ring-wrap">
+            <svg viewBox="0 0 220 220" aria-hidden="true"><circle class="ring-bg" cx="110" cy="110" r="100"/><circle class="ring-fg" id="ring" cx="110" cy="110" r="100"/></svg>
+            <div class="ring-time"><div class="clock" id="clock" aria-live="off">00:00:00</div><div class="sub" id="startedAt">Not started</div></div>
+          </div>
+          <div class="field" style="width:100%;max-width:340px;text-align:left">
+            <label for="sessionName">What are you studying?</label>
+            <input id="sessionName" maxlength="100" value="Study Session">
+          </div>
+          <div>
+            <button class="btn big" id="startBtn">▶ Start studying</button>
+            <button class="btn big stop" id="stopBtn" hidden>■ Stop session</button>
+          </div>
+          <div class="notice" id="doneNotice" role="status"></div>
+        </section>
+        <section class="card">
+          <h2>Today</h2>
+          <div class="stat" style="--accent:var(--c-study);padding:14px 18px;background:#f8f9fd;border-radius:12px">
+            <span class="label">Total study time today</span><span class="value" id="todayTotal">–</span>
+            <span class="hint">Includes the running session</span>
+          </div>
+          <h2 style="margin-top:22px">How it works</h2>
+          <ol style="color:var(--muted);padding-left:18px;margin:0;display:grid;gap:8px">
+            <li>Press Start: Oracle stores the start timestamp.</li>
+            <li>The clock is computed as <em>now − start</em>, not counted up.</li>
+            <li>Close or refresh the page, then come back: it resumes.</li>
+            <li>Press Stop: a PL/SQL procedure saves the duration.</li>
+          </ol>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/stopwatch.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · FocusMate</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar">
+        <div><h1>Dashboard</h1><p id="subtitle">Your day at a glance</p></div>
+        <div class="field"><label for="dateInput">Date</label><input type="date" id="dateInput"></div>
+      </div>
+      <div class="error-box" id="errorBox"></div>
+
+      <section class="grid stats" id="statCards">
+        <div class="card stat" style="--accent:var(--c-study)"><span class="label">📚 Study time</span><span class="value" id="statStudy">–</span><span class="hint" id="hintStudy">&nbsp;</span></div>
+        <div class="card stat" style="--accent:var(--c-sleep)"><span class="label">😴 Sleep time</span><span class="value" id="statSleep">–</span><span class="hint">on this date</span></div>
+        <div class="card stat" style="--accent:var(--c-exercise)"><span class="label">🏃 Exercise time</span><span class="value" id="statExercise">–</span><span class="hint">on this date</span></div>
+        <div class="card stat" style="--accent:var(--c-entertainment)"><span class="label">🎬 Entertainment</span><span class="value" id="statEntertainment">–</span><span class="hint">on this date</span></div>
+        <div class="card stat" style="--accent:var(--brand)"><span class="label">🗂️ Activities recorded</span><span class="value" id="statCount">–</span><span class="hint" id="hintTracked">&nbsp;</span></div>
+      </section>
+
+      <section class="grid two">
+        <div class="card"><h2>Daily productivity summary</h2><div id="productivity"></div></div>
+        <div class="card"><h2>Category breakdown</h2><div id="breakdown"></div></div>
+      </section>
+
+      <section class="card" style="margin-top:18px">
+        <h2>Recent activities</h2>
+        <div class="scroll-x" id="recent"></div>
+      </section>
+    </main>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

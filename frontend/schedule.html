@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Schedule · FocusMate</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="schedule">
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar">
+        <div><h1>Daily Schedule</h1><p>Plan and record your 24 hours.</p></div>
+        <div class="field"><label for="dateInput">Date</label><input type="date" id="dateInput"></div>
+      </div>
+      <div class="error-box" id="errorBox"></div>
+
+      <section class="card" style="margin-bottom:18px">
+        <h2 id="formTitle">Add an activity</h2>
+        <form id="activityForm">
+          <div class="form-grid">
+            <div class="field" style="grid-column:span 2"><label for="nameInput">Activity name</label><input id="nameInput" maxlength="100" required placeholder="e.g. Data Structures revision"></div>
+            <div class="field"><label for="typeInput">Category</label>
+              <select id="typeInput">
+                <option value="STUDY">📚 Study</option><option value="SLEEP">😴 Sleep</option><option value="FOOD">🍽️ Food</option>
+                <option value="EXERCISE">🏃 Exercise</option><option value="ENTERTAINMENT">🎬 Entertainment</option>
+                <option value="TRAVEL">🚌 Travel</option><option value="OTHER">📌 Other</option>
+              </select></div>
+            <div class="field"><label for="startInput">Start time</label><input type="time" id="startInput" required></div>
+            <div class="field"><label for="endInput">End time</label><input type="time" id="endInput" required></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn" type="submit" id="saveBtn">Add</button>
+              <button class="btn secondary" type="button" id="cancelBtn" hidden>Cancel</button>
+            </div>
+          </div>
+          <p style="color:var(--muted);font-size:.82rem;margin:12px 0 0">Tip: if the end time is earlier than the start (e.g. 23:00 → 06:30) the activity continues into the next day.</p>
+        </form>
+      </section>
+
+      <section class="card" style="margin-bottom:18px">
+        <h2>24-hour view <span id="dayTotals" style="color:var(--muted);font-weight:400;font-size:.88rem"></span></h2>
+        <div class="day-strip" id="strip"></div>
+        <div class="strip-scale"><span>00</span><span>04</span><span>08</span><span>12</span><span>16</span><span>20</span><span>24</span></div>
+      </section>
+
+      <section class="card"><h2>Timeline</h2><div class="timeline" id="timeline"></div></section>
+    </main>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/schedule.js"></script>
+</body>
+</html>

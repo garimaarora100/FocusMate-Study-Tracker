@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analytics · FocusMate</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="analytics">
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar">
+        <div><h1>Analytics</h1><p>Calculated with Python pandas from your Oracle records.</p></div>
+        <div class="field"><label for="rangeInput">Period</label>
+          <select id="rangeInput"><option value="7">Last 7 days</option><option value="14">Last 14 days</option><option value="30" selected>Last 30 days</option><option value="90">Last 90 days</option></select></div>
+      </div>
+      <div class="error-box" id="errorBox"></div>
+
+      <section class="grid stats">
+        <div class="card stat" style="--accent:var(--c-study)"><span class="label">Avg daily study</span><span class="value" id="kAvg">–</span><span class="hint" id="kAvgHint">&nbsp;</span></div>
+        <div class="card stat" style="--accent:var(--c-exercise)"><span class="label">Total study time</span><span class="value" id="kStudy">–</span><span class="hint" id="kDays">&nbsp;</span></div>
+        <div class="card stat" style="--accent:var(--c-food)"><span class="label">Top category</span><span class="value" id="kTop">–</span><span class="hint" id="kTopHint">&nbsp;</span></div>
+        <div class="card stat" style="--accent:var(--brand)"><span class="label">Total recorded time</span><span class="value" id="kTotal">–</span><span class="hint" id="kRecordedDays">&nbsp;</span></div>
+      </section>
+
+      <section class="grid two" style="margin-bottom:18px">
+        <div class="card"><h2>Daily study time</h2><div id="dailyChart"></div></div>
+        <div class="card"><h2>Weekly study time</h2><div id="weeklyChart"></div><div id="weeksList" style="margin-top:14px"></div></div>
+      </section>
+
+      <section class="card" style="margin-bottom:18px">
+        <h2>Category-wise time spent</h2>
+        <div id="categoryBars"></div>
+        <div class="scroll-x" id="categoryTable" style="margin-top:14px"></div>
+      </section>
+
+      <section class="grid two">
+        <div class="card"><h2>Descriptive statistics</h2><p style="color:var(--muted);margin:-6px 0 10px;font-size:.85rem">pandas <code>describe()</code> on daily study minutes</p><div id="stats"></div></div>
+        <div class="card">
+          <h2>Download CSV report</h2>
+          <div class="field"><label for="kindInput">Report type</label>
+            <select id="kindInput">
+              <option value="detail">Detailed activity records</option>
+              <option value="daily">Daily totals per category</option>
+              <option value="category">Category summary</option>
+            </select></div>
+          <p style="color:var(--muted);font-size:.85rem">Covers the selected period. A copy is also saved in the project's <code>reports/</code> folder.</p>
+          <a class="btn" id="downloadBtn" href="#">⬇ Download CSV</a>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

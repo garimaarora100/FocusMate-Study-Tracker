@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FocusMate · Smart Study Time Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="landing">
+    <section class="hero">
+      <div class="brand" style="padding:0"><span class="brand-mark">🎯</span>FocusMate</div>
+      <h1>Know exactly where your 24 hours go.</h1>
+      <p class="lead">A smart study-time and daily activity tracker for students. Time your study sessions, plan your day, and see real analytics from your own data.</p>
+      <ul class="feature-list">
+        <li>Study stopwatch that survives a browser refresh</li>
+        <li>Full 24-hour schedule with overnight activities</li>
+        <li>Pandas-powered analytics and CSV reports</li>
+        <li>Oracle PL/SQL keeps your data consistent</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <form class="card login-card" id="startForm">
+        <h2>Welcome back 👋</h2>
+        <p>No account needed for this version. Just tell us your name.</p>
+        <div class="field">
+          <label for="studentName">Your name</label>
+          <input id="studentName" maxlength="40" placeholder="e.g. Aarav" autocomplete="given-name">
+        </div>
+        <button class="btn big" type="submit" style="justify-content:center">Open my dashboard →</button>
+        <p id="serverStatus" style="font-size:.82rem"></p>
+      </form>
+    </section>
+  </div>
+  <script src="js/api.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      const input = document.getElementById("studentName");
+      input.value = localStorage.getItem("focusmate_name") || "";
+      document.getElementById("startForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        localStorage.setItem("focusmate_name", input.value.trim());
+        location.href = "dashboard.html";
+      });
+      FocusAPI.health().then((h) => {
+        document.getElementById("serverStatus").textContent =
+          h.database === "connected" ? "✅ Server and Oracle database connected" : "⚠️ Server is running but Oracle is not reachable";
+      }).catch((e) => { document.getElementById("serverStatus").textContent = "⚠️ " + e.message; });
+    })();
+  </script>
+</body>
+</html>
